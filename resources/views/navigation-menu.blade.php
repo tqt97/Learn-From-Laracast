@@ -5,20 +5,20 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
                     </x-nav-link>
 
-                    
                     <livewire:NavigationCart />
                 </div>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -99,6 +99,23 @@
                                         </svg>
                                     </button>
                                 </span>
+                            @else
+                                @if (Route::has('login'))
+                                    <nav class="-mx-3 flex flex-1 justify-end">
+                                        @guest
+                                            <a href="{{ route('login') }}"
+                                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                                Log in
+                                            </a>
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}"
+                                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                                    Register
+                                                </a>
+                                            @endif
+                                        @endguest
+                                    </nav>
+                                @endif
                             @endauth
                             {{-- @endif --}}
                         </x-slot>

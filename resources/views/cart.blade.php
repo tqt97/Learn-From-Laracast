@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-red-500 dark:text-gray-200 leading-tight">
-            {{ __('Cart Page') }}
+    {{-- <x-slot name="header">
+        <h2 class="font-semibold text-3xl text-red-500 dark:text-gray-200 leading-tight">
+            {{ __('Your Cart') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
     <livewire:cart />
 </x-app-layout>
