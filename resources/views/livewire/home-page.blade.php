@@ -9,7 +9,8 @@
                     class="p-2 mt-2 text-xl text-center leading-6 font-medium text-red-600 group-hover:text-red-500 dark:text-gray-100">
                     {{ $product->name }}
                 </h3>
-                <span class="my-2 p-2 text-md leading-6 font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-100 border-t-2 border-gray-300">
+                <span
+                    class="my-2 p-2 text-md leading-6 font-medium text-gray-600 group-hover:text-gray-800 dark:text-gray-100 border-t-2 border-gray-300">
                     {{ $product->price }}
                 </span>
             </div>
