@@ -1,13 +1,14 @@
 <div class="grid grid-cols-2 gap-10 my-6 bg-white">
-    <div class="space-y-6 p-2">
+    <div class="space-y-6 p-2" x-data="{ image: '{{ $this->product->image->path }}' }">
         <div class="rounded shadow-md">
-            <img src="{{ $this->product->image->path }}" alt="{{ $this->product->name }}" class="rounded">
+            <img x-bind:src="image" alt="{{ $this->product->name }}" class="rounded">
         </div>
 
         <div class="grid grid-cols-4 space-x-3">
             @foreach ($this->product->images as $image)
                 <div class="rounded shadow">
-                    <img src="{{ $image->path }}" alt="{{ $this->product->name }}" class="rounded">
+                    <img src="{{ $image->path }}" x-on:click="image = '{{ $image->path }}'"
+                        alt="{{ $this->product->name }}" class="rounded">
                 </div>
             @endforeach
         </div>
@@ -19,7 +20,7 @@
             {{ $this->product->description }}
         </div>
         <div class="mt-6 space-y-6">
-            <select name="" id="" wire:model="quantity"
+            <select name="" id=""
                 class="w-full bg-gray-50 py-1.5 pl-3 pr-10 border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm">
                 @foreach ($this->product->variants as $variant)
                     <option value="{{ $variant->id }}">
