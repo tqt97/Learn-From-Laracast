@@ -38,6 +38,7 @@ class Show extends Component
         );
 
         $this->banner('Your product has been added to your cart', 'success');
+        $this->dispatch('addToCartUpdated');
     }
 
     public function render()
