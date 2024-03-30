@@ -5,5 +5,5 @@
         </h2>
     </x-slot>
 
-    <livewire:home-page />
+    <livewire:home />
 </x-app-layout>
