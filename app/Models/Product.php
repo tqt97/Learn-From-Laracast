@@ -19,4 +19,8 @@ class Product extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function image() {
+        return $this->hasOne(Image::class)->ofMany('featured', 'max');
+    }
+
 }

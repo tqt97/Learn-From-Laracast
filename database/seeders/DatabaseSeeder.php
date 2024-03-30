@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(10)
+        Product::factory(22)
             ->hasVariants(5)
-            ->has(Image::factory(2)
+            ->has(Image::factory(4)
                 ->sequence(fn (Sequence $sequence) => ['featured' => $sequence->index === 0]))
             ->create();
 
