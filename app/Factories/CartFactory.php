@@ -6,7 +6,8 @@ use App\Models\Cart;
 
 class CartFactory
 {
-    public static function make(){
+    public static function make()
+    {
 
         return match (auth()->guest()) {
             true => Cart::firstOrCreate(['session_id' => session()->getId(),]),
