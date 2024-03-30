@@ -24,8 +24,28 @@ class Cart extends Component
     public function delete($id)
     {
         CartFactory::make()->items()->where('id', $id)->delete();
-        $this->banner('Your product has been removed from your cart', 'success');
+        $this->dangerBanner('Your product has been removed from your cart', 'success');
         $this->dispatch('cartUpdated');
+    }
+
+    public function increment($id)
+    {
+        CartFactory::make()->items()->where('id', $id)?->increment('quantity', 1);
+        $this->banner('Updated your cart quantity successfully');
+        $this->dispatch('incrementQuantity');
+    }
+
+    public function decrement($id)
+    {
+        $item = CartFactory::make()->items()->where('id', $id)->firstOrFail();
+        if ($item->quantity > 1) {
+            $item->decrement('quantity', 1);
+            $this->banner('Updated your cart quantity successfully');
+        } else {
+            $item->delete();
+            $this->dangerBanner('Your product has been removed from your cart');
+        }
+        $this->dispatch('decrementQuantity');
     }
 
     public function render()

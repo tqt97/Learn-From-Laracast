@@ -8,6 +8,8 @@
                             <tr>
                                 <th scope="col" class="px-6 py-4">#</th>
                                 <th scope="col" class="px-6 py-4">Product</th>
+                                <th scope="col" class="px-6 py-4 text-center">Size</th>
+                                <th scope="col" class="px-6 py-4 text-center">Color</th>
                                 <th scope="col" class="px-6 py-4 text-center">Quantity</th>
                                 <th lass="px-6 py-4 text-center"></th>
                             </tr>
@@ -15,15 +17,36 @@
                         <tbody>
                             @forelse ($this->items as $item)
                                 <tr
-                                    class="border-b border-neutral-200 dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-white/10">
+                                    class="relative border-b border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/10">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $loop->iteration }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        <span class="font-bold text-red-900 text-md">{{ $item->product->name }}</span> |
-                                        <span class="font-semibold">Size: </span> {{ $item->variant->size }} |
-                                        <span class="font-semibold">Color: </span> {{ $item->variant->color }}
+                                        {{ $item->product->name }}
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4 text-center">
-                                        {{ $item->quantity }}
+                                        {{ $item->variant->size }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-4 text-center">
+                                        {{ $item->variant->color }}
+                                    </td>
+                                    <td
+                                        class="flex whitespace-nowrap px-6 py-4 text-center justify-center items-center">
+                                        <button class="text-gray-800 font-bold p-1 bg-gray-100 hover:bg-gray-300"
+                                            wire:click="decrement({{ $item->id }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <span class="font-semibold text-md mx-2">{{ $item->quantity }}</span>
+                                        <button class="text-gray-800 font-bold p-1 bg-gray-100 hover:bg-gray-300"
+                                            wire:click="increment({{ $item->id }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+
+                                        </button>
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4 text-center">
                                         <button wire:click="delete({{ $item->id }})">
@@ -38,7 +61,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="whitespace-nowrap px-6 py-4 font-medium text-center" colspan="4">
+                                    <td class="whitespace-nowrap px-6 py-4 font-medium text-center" colspan="6">
                                         <span class="flex justify-center items-center text-lg font-bold text-red-900">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
