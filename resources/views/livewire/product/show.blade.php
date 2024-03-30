@@ -20,7 +20,7 @@
             {{ $this->product->description }}
         </div>
         <div class="mt-6 space-y-6">
-            <select name="" id=""
+            <select name="" id="" wire:model="variant"
                 class="w-full bg-gray-50 py-1.5 pl-3 pr-10 border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm">
                 @foreach ($this->product->variants as $variant)
                     <option value="{{ $variant->id }}">
@@ -28,8 +28,13 @@
                     </option>
                 @endforeach
             </select>
+            @error('variant')
+                <div class="text-red-500 mt-2">{{ $message }}</div>
+            @enderror
 
-            <x-button class="hover:bg-red-600 font-bold"> Add to cart</x-button>
+            <x-button class="hover:bg-red-600 font-bold" wire:click="addToCart">
+                Add to cart
+            </x-button>
         </div>
     </div>
 </div>
