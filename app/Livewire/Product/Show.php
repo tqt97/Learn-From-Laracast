@@ -30,7 +30,8 @@ class Show extends Component
     //     return Product::findOrFail($id);
     // }
 
-    public function addToCart(addToCart $cart){
+    public function addToCart(addToCart $cart)
+    {
         $this->validate();
 
         $cart->add(
@@ -43,7 +44,7 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.product.show');
-        // ->layout('layouts.app');
+        return view('livewire.product.show')
+            ->layout('layouts.app');
     }
 }

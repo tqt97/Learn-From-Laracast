@@ -1,12 +1,13 @@
-<div class="bg-white rounded-b-lg border-t shahow p-5 mb-12">
+<div class="bg-white rounded border-t shahow p-5 mb-12 mt-6">
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                        <thead class="border-b text-lg border-neutral-200 font-medium dark:border-white/10">
+                        <thead class="border-b text-[1.075rem] border-neutral-200 font-medium dark:border-white/10">
                             <tr>
                                 <th scope="col" class="px-6 py-4">#</th>
+                                <th scope="col" class="px-6 py-4">Image</th>
                                 <th scope="col" class="px-6 py-4">Product</th>
                                 <th scope="col" class="px-6 py-4 text-center">Size</th>
                                 <th scope="col" class="px-6 py-4 text-center">Color</th>
@@ -20,6 +21,10 @@
                                     class="relative border-b border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/10">
                                     <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $loop->iteration }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">
+                                        <img src="{{ $item->product->image->path }}" alt="{{ $item->product->name }}"
+                                            class="w-16 rounded">
+                                    </td>
+                                    <td class="whitespace-nowrap px-6 py-4">
                                         {{ $item->product->name }}
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4 text-center">
@@ -29,8 +34,8 @@
                                         {{ $item->variant->color }}
                                     </td>
                                     <td
-                                        class="flex whitespace-nowrap px-6 py-4 text-center justify-center items-center">
-                                        <button class="text-gray-800 font-bold p-1 bg-gray-100 hover:bg-gray-300"
+                                        class="flex whitespace-nowrap px-6 py-4 text-center justify-center items-center h-20">
+                                        <button class="text-gray-900 font-bold p-1 bg-gray-50 hover:bg-gray-200"
                                             wire:click="decrement({{ $item->id }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -38,7 +43,7 @@
                                             </svg>
                                         </button>
                                         <span class="font-semibold text-md mx-2">{{ $item->quantity }}</span>
-                                        <button class="text-gray-800 font-bold p-1 bg-gray-100 hover:bg-gray-300"
+                                        <button class="text-gray-900 font-bold p-1 bg-gray-50 hover:bg-gray-200"
                                             wire:click="increment({{ $item->id }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
