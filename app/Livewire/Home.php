@@ -2,13 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Actions\WebShop\addToCart;
 use App\Models\Product;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Home extends Component
 {
     use WithPagination;
+    use InteractsWithBanner;
 
     public $sort = 'desc';
     public $search = '';
@@ -21,6 +24,20 @@ class Home extends Component
             $this->sort = 'asc';
         }
     }
+
+
+    public function add(Product $product, addToCart $cart)
+    {
+
+        $variant = $product->variants->first()->id;
+
+        $cart->add(
+            variantId: $variant
+        );
+
+        $this->banner('Your product has been added to your cart', 'success');
+        $this->dispatch('addToCartUpdated');
+    }
     public function render()
     {
         $products = Product::query()
@@ -28,7 +45,7 @@ class Home extends Component
             ->orderBy('name', $this->sort)
             ->paginate(12);
 
-        return view('livewire.home',[
+        return view('livewire.home', [
             'products' => $products
         ]);
     }
