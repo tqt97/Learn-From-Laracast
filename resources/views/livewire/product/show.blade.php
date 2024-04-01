@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="p-4 mt-6">
-        <h1 class="text-3xl font-extrabold text-red-500 font-mono">{{ $this->product->name }}</h1>
-        <h3 class="text-xl mt-6">Price:
-            <span class="text-blue-800">{{ $this->product->price }}</span>
+        <h1 class="text-3xl font-extrabold text-blue-800 font-mono">{{ $this->product->name }}</h1>
+        <h3 class="text-md mt-6">Price:
+            <span class="text-xl text-blue-900">{{ $this->product->price }}</span>
         </h3>
         <div class="mt-6 text-justify text-gray-800">
             <p class="text-md font-semibold">Description:</p>
@@ -24,13 +24,13 @@
         </div>
         <div class="mt-6 space-y-6">
             <select name="" id="" wire:model="variant"
-                class="w-full bg-gray-50 py-1.5 pl-3 pr-10 border-gray-300 focus:border-red-500 focus:ring-red-500 rounded-md shadow-sm">
+                class="w-full bg-gray-50 py-1.5 pl-3 pr-10 border-gray-300 focus:border-blue-700 focus:ring-blue-700 rounded-md shadow-sm">
                 @foreach ($this->product->variants as $variant)
                     <option value="{{ $variant->id }}">
                         {{ $variant->size }} / {{ $variant->color }}
                     </option>
                 @endforeach
-            </select>
+            </select> 
             @error('variant')
                 <div class="text-red-500 mt-2">{{ $message }}</div>
             @enderror

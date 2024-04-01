@@ -1,8 +1,9 @@
 <div>
     <x-slot name="slider">
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right"
-            >
-            <div class="flex h-full w-full mx-auto pt-6 md:pt-0 md:items-center rounded" style="height: 24rem; background-image: url('{{ asset('images/bg-home.avif') }}');">
+        <section
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right">
+            <div class="flex h-full w-full mx-auto pt-6 md:pt-0 md:items-center rounded"
+                style="height: 24rem; background-image: url('{{ asset('images/bg-home.avif') }}');">
                 <div class="flex flex-col w-full justify-center items-center  px-6 tracking-wide">
                     <h1 class="text-blue-900 text-6xl my-4 font-bold font-mono">Welcome to our Shop</h1>
                     <a class="flex items-center justify-center text-2xl text-white no-underline border-b border-gray-800 leading-relaxed hover:text-black hover:border-black"
@@ -31,7 +32,7 @@
 
             <div class="flex items-center">
 
-                <button class="pl-3 inline-block no-underline hover:text-black">
+                <button class="pl-3 inline-block no-underline hover:text-black cursor-pointer" wire:click="orderBy">
                     <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24">
                         <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z"></path>
@@ -52,7 +53,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5">
 
-            @foreach ($this->products as $product)
+            @foreach ($products as $product)
                 <div
                     class="relative group bg-white  dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg hover:shadow-xl transition duration-200">
                     <a href="{{ route('products.show', $product) }}" class="">
@@ -86,7 +87,8 @@
             @endforeach
         </div>
         <div class="relative mt-6">
-            {{ $this->products->links() }}
+            {{-- {{ $products->links() }} --}}
+            {{ $products->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 </div>

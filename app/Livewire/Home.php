@@ -4,15 +4,32 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Home extends Component
 {
-    public function getProductsProperty()
+    use WithPagination;
+
+    public $sort = 'desc';
+    public $search = '';
+
+    public function orderBy()
     {
-        return Product::query()->paginate(12);
+        if ($this->sort == 'asc') {
+            $this->sort = 'desc';
+        } else {
+            $this->sort = 'asc';
+        }
     }
     public function render()
     {
-        return view('livewire.home');
+        $products = Product::query()
+            ->where('name', 'like', '%' . $this->search . '%')
+            ->orderBy('name', $this->sort)
+            ->paginate(12);
+
+        return view('livewire.home',[
+            'products' => $products
+        ]);
     }
 }

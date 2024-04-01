@@ -5,5 +5,5 @@
         </h2>
     </x-slot> --}}
 
-    <livewire:home />
+    <livewire:home lazy="on-load" />
 </x-app-layout>
